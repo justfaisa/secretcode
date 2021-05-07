@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width">
+    <title></title>
+    <style type="text/css">
+    *{
+      margin:0;
+      padding:0;
+    }
+      body{
+        margin:0;
+        min-height:90vh;
+        background:linear-gradient(#649c4d,#7ab057);
+        color:#fff;
+      }
+    #display{
+      text-align:center;
+      width:100%;
+      height:100%;
+     
+    }
+    #input,#output{
+      font-size:20px;
+      width:90%;
+      height:30vh;
+       background-color:rgb(250,250,250,0.4);
+    }
+    #output{
+      color:#f00;
+    }
+    button{
+      padding:5px;
+      background-color:#3371be;
+      color:#fff;
+      font-weight:900;
+      letter-spacing:2px;
+    }
+    #encode{
+      background-color:#c93737;
+    }
+    #decode{
+      background-color:#3ca865;
+    }
+    
+    #about{
+    font-size:10px;
+ background-color:#263238;
+      position:relative;
+      width:auto;
+      display:none;
+      padding:10px;
+      margin:8px;
+      position:fixed;
+      top:0%;
+      border-radius:4px;
+    }
+    #close{
+      border:none;   background-color:#f00;
+      position:absolute;
+      right:0%;
+      top:0;
+      padding:5px;
+    }
+    #about p{
+      margin-left:10px;
+    }
+    #q{
+      padding:0px 10px 0px 10px;
+      font-size:30px;
+      border-radius:50%;
+    }
+  
+    </style>
+  </head>
+  <body onload="infoOn()">
+  
+    <table border="0" cellspacing="5" id="display">
+      <caption><h1>SECRET CODE</h1></caption>
+  <tr><td colspan="3">
+  <p>ENTER INPUT</p>
+  <textarea id="input"></textarea>
+      </td></tr>
+  <tr>
+    <td><button id="encode" onclick="enCode()">ENCODE</button></td>
+    <td><button id="q" onclick="infoOn()">?</button></td>
+    <td><button id="decode" onclick="deCode()">DECODE</button></td>
+  </tr><tr><td colspan="3">
+        <P>OUTPUT CODE</P>
+    <textarea id="output"></textarea>
+    </td></tr>
+    <tr>
+      <td></td>
+      <td><button onclick="outputCopy()">COPY</button></td>
+      <td><button onclick="clearALL()">CLEAR ALL</button></td>
+    </tr>
+    </table>
+    
+    
+  <script type="text/javascript" charset="utf-8">
+  let display=document.querySelector("#display");
+  let about=document.querySelector("#about");
+  
+  //get contents:
+  let input=document.querySelector("#input");
+  let output=document.querySelector("#output");
+
+function clearALL(){
+    console.log("")
+    input.value='';
+    output.value='';
+  }
+
+  function enCode(){
+  let text=input.value.toUpperCase();
+    let code='';
+    for(l of text){
+      switch(l){
+      case "A":l='*';
+      break;
+      case "B":l='j';
+      break;
+      case "C":l='t';
+      break;
+      case "D":l='#';
+      break;
+      case "E":l='a';
+      break;
+      case "F":l='-';
+      break;
+      case "G":l='v';
+      break;
+      case "H":l='b';
+      break;
+      case "I":l='?';
+      break;
+      case "J":l='y';
+      break;
+      case "K":l='/';
+      break;
+      case "L":l='=';
+      break;
+      case "M":l='@';
+      break;
+      case "N":l='f';
+      break;
+      case "O":l='+';
+      break;
+      case "P":l='_';
+      break;
+      case "Q":l='d';
+      break;
+      case "R":l='$';
+      break;
+      case "S":l='%';
+      break;
+      case "T":l='m';
+      break;
+      case "U":l='!';
+      break;
+      case "V":l='&';
+      break;
+      case "W":l='p';
+      break;
+      case "X":l='q';
+      break;
+      case "Y":l='o';
+      break;
+      case "Z":l='n';
+      break;
+      case " ":l='.';
+      break;
+      case ".":l=']';
+      break;
+      case "*":l='r';
+      break;
+      case "#":l='s';
+      break;
+      case "-":l='c';
+      break;
+      case "?":l='k';
+      break;
+      case "/":l='l';
+      break;
+      case "=":l='h';
+      break;
+      case "@":l='x';
+      break;
+      case "+":l='w';
+      break;
+      case "_":l='u';
+      break;
+      case "$":l='N';
+      break;
+      case "%":l='A';
+      break;
+      case "!":l='B';
+      break;
+      case "&":l='C';
+      break;
+      case "1":l='L';
+      break;
+      case "2":l=':';
+      break;
+      case "3":l=';';
+      break;
+      case "4":l='E';
+      break;
+      case "5":l=',';
+      break;
+      case "6":l='[';
+      break;
+      case "7":l='I';
+      break;
+      case "8":l='(';
+      break;
+      case "9":l=')';
+      break;
+      case "0":l='G';
+      break;
+      case ":":l='Z';
+      break
+      case ";":l='X';
+      break
+      case "[":l='Y';
+      break
+      case ",":l='W';
+      break
+      case "(":l='V';
+      break
+      case ")":l='U';
+      break
+      default:l=l;
+      break;
+      }
+      code+=l;
+    }
+  output.value=code;
+  }
+  function deCode(){
+    let code=input.value;
+    let text='';
+    for(let l of code){
+         switch(l){
+      case "*":l='A';
+      break;
+      case "j":l='B';
+      break;
+      case "t":l='C';
+      break;
+      case "#":l='D';
+      break;
+      case "a":l='E';
+      break;
+      case "-":l='F';
+      break;
+      case "v":l='G';
+      break;
+      case "b":l='H';
+      break;
+      case "?":l='I';
+      break;
+      case "y":l='J';
+      break;
+      case "/":l='K';
+      break;
+      case "=":l='L';
+      break;
+      case "@":l='M';
+      break;
+      case "f":l='N';
+      break;
+      case "+":l='O';
+      break;
+      case "_":l='P';
+      break;
+      case "d":l='Q';
+      break;
+      case "$":l='R';
+      break;
+      case "%":l='S';
+      break;
+      case "m":l='T';
+      break;
+      case "!":l='U';
+      break;
+      case "&":l='V';
+      break;
+      case "p":l='W';
+      break;
+      case "q":l='X';
+      break;
+      case "o":l='Y';
+      break;
+      case "n":l='Z';
+      break;
+      case ".":l=' ';
+      break;
+      case "]":l='.';
+      break;
+      case "r":l='*';
+      break;
+      case "s":l='#';
+      break;
+      case "c":l='-';
+      break;
+      case "k":l='?';
+      break;
+      case "l":l='/';
+      break;
+      case "h":l='=';
+      break;
+      case "x":l='@';
+      break;
+      case "w":l='+';
+      break;
+      case "u":l='_';
+      break;
+      case "N":l='$';
+      break;
+      case "A":l='%';
+      break;
+      case "B":l='!';
+      break;
+      case "C":l='&';
+      break;
+      case "L":l='1';
+      break;
+      case ":":l='2';
+      break;
+      case ";":l='3';
+      break;
+      case "E":l='4';
+      break;
+      case ",":l='5';
+      break;
+      case "[":l='6';
+      break;
+      case "I":l='7';
+      break;
+      case "(":l='8';
+      break;
+      case ")":l='9';
+      break;
+      case "G":l='0';
+      break;
+      case "Z":l=':';
+      break;
+      case "X":l=';';
+      break;
+      case "Y":l='[';
+      break;
+      case "W":l=',';
+      break;
+      case "V":l='(';
+      break;
+      case "U":l=')';
+      }
+      text+=l;
+    }
+    output.value=text;
+  }
+  function outputCopy(){
+    enCode();
+    let text=output;
+    text.select();
+    text.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("CODE COPIED");
+  }
+function infoOn(){
+  about.style.display="block";
+}
+function infOf(){
+  about.style.display="none";
+}
+  </script>
+  </body>
+</html>
